@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="您的公司提供专业、可靠且面向未来的企业服务。"
+  >
+  <title>您的公司 | Your Company</title>
+
+  <style>
+    :root {
+      --primary: #5b3df5;
+      --primary-dark: #3d27b8;
+      --accent: #ffd84d;
+      --dark: #14152b;
+      --text: #32344a;
+      --muted: #6d7088;
+      --light: #f6f7fc;
+      --white: #ffffff;
+      --border: #e5e7f0;
+      --shadow: 0 18px 50px rgba(32, 26, 90, 0.12);
+      --radius: 22px;
+      --container: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--white);
+      font-family:
+        Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 45px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 18px;
+      color: var(--dark);
+      font-size: clamp(2.1rem, 5vw, 3.6rem);
+      line-height: 1.15;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      padding: 10px 16px;
+      color: var(--white);
+      background: var(--dark);
+      border-radius: 8px;
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    /* Header */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(229, 231, 240, 0.8);
+      backdrop-filter: blur(14px);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--dark);
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--primary), #8f5cff);
+      border-radius: 13px;
+      box-shadow: 0 10px 25px rgba(91, 61, 245, 0.25);
+    }
+
+    .brand-text {
+      line-height: 1.2;
+    }
+
+    .brand-text small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a:focus-visible {
+      color: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .language-button,
+    .menu-button {
+      min-height: 42px;
+      padding: 0 15px;
+      color: var(--dark);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .language-button:hover {
+      color: var(--white);
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .menu-button {
+      display: none;
+      width: 44px;
+      padding: 0;
+      border-radius: 12px;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 19px;
+      height: 2px;
+      margin: 5px auto;
+      background: currentColor;
+      border-radius: 10px;
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      min-height: 760px;
+      padding: 175px 0 100px;
+      background:
+        radial-gradient(circle at 90% 15%, rgba(255, 216, 77, 0.35), transparent 25%),
+        radial-gradient(circle at 5% 80%, rgba(91, 61, 245, 0.15), transparent 27%),
+        linear-gradient(145deg, #fafaff, #f1efff);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      position: absolute;
+      top: 120px;
+      right: -130px;
+      width: 430px;
+      height: 430px;
+      content: "";
+      background: linear-gradient(135deg, var(--primary), #a45dff);
+      border-radius: 45% 55% 60% 40%;
+      opacity: 0.12;
+      transform: rotate(15deg);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 22px;
+      padding: 8px 14px;
+      color: var(--primary-dark);
+      background: rgba(91, 61, 245, 0.09);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .hero-badge::before {
+      width: 8px;
+      height: 8px;
+      content: "";
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(255, 216, 77, 0.25);
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 0;
+      color: var(--dark);
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.02;
+      letter-spacing: -0.055em;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin: 25px 0 0;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 23px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: var(--white);
+      background: var(--primary);
+      box-shadow: 0 13px 30px rgba(91, 61, 245, 0.25);
+    }
+
+    .button-secondary {
+      color: var(--dark);
+      background: var(--white);
+      border-color: var(--border);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 430px;
+    }
+
+    .visual-card {
+      position: absolute;
+      inset: 20px 15px 30px 45px;
+      padding: 38px;
+      color: var(--white);
+      background: linear-gradient(145deg, var(--dark), #35257e);
+      border-radius: 40px;
+      box-shadow: var(--shadow);
+      transform: rotate(3deg);
+    }
+
+    .visual-card::before {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      width: 90px;
+      height: 90px;
+      content: "";
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.95;
+    }
+
+    .visual-card::after {
+      position: absolute;
+      right: 60px;
+      bottom: 50px;
+      width: 150px;
+      height: 150px;
+      content: "";
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 28px rgba(255, 255, 255, 0.05),
+        0 0 0 56px rgba(255, 255, 255, 0.03);
+    }
+
+    .visual-card strong {
+      position: relative;
+      z-index: 2;
+      display: block;
+      max-width: 260px;
+      margin-top: 135px;
+      font-size: 2.2rem;
+      line-height: 1.2;
+    }
+
+    .visual-card p {
+      position: relative;
+      z-index: 2;
+      max-width: 260px;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .floating-label {
+      position: absolute;
+      z-index: 3;
+      right: -5px;
+      bottom: 12px;
+      padding: 15px 19px;
+      color: var(--dark);
+      background: var(--accent);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      font-weight: 800;
+    }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .about-visual {
+      position: relative;
+      min-height: 470px;
+      background:
+        linear-gradient(145deg, rgba(91, 61, 245, 0.94), rgba(140, 78, 230, 0.9));
+      border-radius: 35px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .about-visual::before {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 240px;
+      height: 240px;
+      content: "";
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .about-visual::after {
+      position: absolute;
+      bottom: -80px;
+      left: -65px;
+      width: 260px;
+      height: 260px;
+      content: "";
+      border: 45px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+    }
+
+    .about-visual-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 42px;
+      color: var(--white);
+    }
+
+    .about-visual-content strong {
+      font-size: 4rem;
+      line-height: 1;
+    }
+
+    .about-visual-content span {
+      max-width: 280px;
+      margin-top: 15px;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .about-content h2 {
+      margin: 0 0 22px;
+      color: var(--dark);
+      font-size: clamp(2.1rem, 5vw, 3.5rem);
+      line-height: 1.15;
+    }
+
+    .about-content p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .value {
+      padding: 19px 16px;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .value strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+
+    .value span {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    /* Services */
+
+    .services {
+      background: var(--light);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      position: relative;
+      min-height: 320px;
+      padding: 30px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(32, 26, 90, 0.06);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .service-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-7px);
+    }
+
+    .service-card::after {
+      position: absolute;
+      right: -45px;
+      bottom: -45px;
+      width: 130px;
+      height: 130px;
+      content: "";
+      background: var(--card-color);
+      border-radius: 50%;
+      opacity: 0.09;
+    }
+
+    .service-number {
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .service-icon {
+      display: grid;
+      width: 55px;
+      height: 55px;
+      margin: 38px 0 24px;
+      place-items: center;
+      color: var(--white);
+      background: var(--card-color);
+      border-radius: 16px;
+      font-size: 1.4rem;
+    }
+
+    .service-card h3 {
+      margin: 0 0 12px;
+      color: var(--dark);
+      font-size: 1.35rem;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    /* Contact */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info {
+      padding: 38px;
+      color: var(--white);
+      background: var(--dark);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-info h2 {
+      margin: 0 0 16px;
+      font-size: 2rem;
+    }
+
+    .contact-info > p {
+      margin: 0 0 32px;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 22px;
+    }
+
+    .contact-item {
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .contact-item:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .contact-item small {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .contact-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 19px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      color: var(--dark);
+      font-size: 0.87rem;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 14px 16px;
+      color: var(--text);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(91, 61, 245, 0.1);
+    }
+
+    .field textarea {
+      min-height: 155px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      width: max-content;
+      min-height: 52px;
+      padding: 0 25px;
+      color: var(--white);
+      background: var(--primary);
+      border: 0;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .form-message {
+      display: none;
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: 13px 16px;
+      color: #136540;
+      background: #e5fff2;
+      border-radius: 10px;
+    }
+
+    /* Footer */
+
+    .site-footer {
+      padding: 35px 0;
+      color: rgba(255, 255, 255, 0.68);
+      background: #0b0c1a;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Mobile layout */
+
+    @media (max-width: 900px) {
+      .nav-menu {
+        position: fixed;
+        top: 76px;
+        right: 0;
+        left: 0;
+        display: grid;
+        gap: 0;
+        padding: 18px 20px 30px;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        transform: translateY(-130%);
+        transition: transform 0.3s ease;
+      }
+
+      .menu-open .nav-menu {
+        transform: translateY(0);
+      }
+
+      .nav-menu a {
+        display: block;
+        padding: 16px 4px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 140px;
+      }
+
+      .hero-grid {
+        gap: 45px;
+      }
+
+      .hero-visual {
+        min-height: 400px;
+      }
+
+      .about-grid {
+        gap: 45px;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(calc(100% - 28px), var(--container));
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .brand-text small {
+        display: none;
+      }
+
+      .language-button {
+        min-height: 40px;
+        padding: 0 12px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 125px 0 75px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 14vw, 4.5rem);
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .hero-visual {
+        min-height: 360px;
+      }
+
+      .visual-card {
+        inset: 10px 5px 25px 15px;
+        padding: 28px;
+      }
+
+      .visual-card strong {
+        margin-top: 120px;
+        font-size: 1.8rem;
+      }
+
+      .about-visual {
+        min-height: 390px;
+      }
+
+      .values,
+      .service-grid,
+      .contact-form {
+        grid-template-columns: 1fr;
+      }
+
+      .field-full {
+        grid-column: auto;
+      }
+
+      .service-card {
+        min-height: 280px;
+      }
+
+      .contact-info {
+        padding: 28px;
+      }
+
+      .submit-button {
+        width: 100%;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">跳到主要内容</a>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="#home">
+        <span class="brand-mark">YC</span>
+        <span class="brand-text">
+          <span data-i18n="companyName">您的公司</span>
+          <small data-i18n="companyTagline">专业 · 创新 · 可靠</small>
+        </span>
+      </a>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#home" data-i18n="navHome">首页</a></li>
+        <li><a href="#about" data-i18n="navAbout">关于我们</a></li>
+        <li><a href="#services" data-i18n="navServices">服务</a></li>
+        <li><a href="#contact" data-i18n="navContact">联系我们</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <button
+          class="language-button"
+          id="language-button"
+          type="button"
+          aria-label="Switch language"
+        >
+          EN
+        </button>
+
+        <button
+          class="menu-button"
+          id="menu-button"
+          type="button"
+          aria-label="打开菜单"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge" data-i18n="heroBadge">
+            为您的业务创造持久价值
+          </div>
+
+          <h1 data-i18n="heroTitle">
+            用专业与创新，推动您的业务<span>持续成长</span>
+          </h1>
+
+          <p class="hero-description" data-i18n="heroDescription">
+            我们为不同规模的企业提供灵活、可靠且高效的解决方案，
+            从策略规划到项目落地，全程与您并肩前行。
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="pdf/demo-cv.pdf" download="demo-cv.pdf" data-i18n="downloadCV">
+              下载简历 PDF
+            </a>
+
+            <a class="button button-primary" href="#services" data-i18n="viewServices">
+              查看服务
+            </a>
+
+            <a class="button button-secondary" href="#contact" data-i18n="talkToUs">
+              联系我们
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-card">
+            <strong data-i18n="visualTitle">让好想法真正产生影响</strong>
+            <p data-i18n="visualText">
+              清晰的策略、优秀的执行，以及值得信赖的长期合作。
+            </p>
+          </div>
+
+          <div class="floating-label" data-i18n="floatingLabel">
+            为未来而设计
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-visual">
+          <div class="about-visual-content">
+            <strong>10+</strong>
+            <span data-i18n="experience">
+              多年行业经验，为客户提供务实而专业的服务
+            </span>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <span class="eyebrow" data-i18n="aboutEyebrow">关于我们</span>
+
+          <h2 data-i18n="aboutTitle">
+            不只是服务商，更是值得信赖的合作伙伴
+          </h2>
+
+          <p data-i18n="aboutParagraph1">
+            我们是一支专注于企业发展、数字解决方案和品牌创新的专业团队。
+            我们深入了解每一位客户的目标，并以清晰、有效的方法将想法转化为成果。
+          </p>
+
+          <p data-i18n="aboutParagraph2">
+            无论您正在建立新业务、优化现有流程，还是拓展新的市场，
+            我们都将提供适合您实际需求的解决方案。
+          </p>
+
+          <div class="values">
+            <div class="value">
+              <strong data-i18n="value1Title">专业</strong>
+              <span data-i18n="value1Text">注重品质</span>
+            </div>
+
+            <div class="value">
+              <strong data-i18n="value2Title">创新</strong>
+              <span data-i18n="value2Text">面向未来</span>
+            </div>
+
+            <div class="value">
+              <strong data-i18n="value3Title">可靠</strong>
+              <span data-i18n="value3Text">长期合作</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow" data-i18n="servicesEyebrow">我们的服务</span>
+
+          <h2 data-i18n="servicesTitle">
+            从想法到成果，为企业提供完整支持
+          </h2>
+
+          <p data-i18n="servicesDescription">
+            我们结合策略、设计与技术能力，为不同发展阶段的企业提供灵活服务。
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card" style="--card-color: #5b3df5;">
+            <span class="service-number">01</span>
+            <div class="service-icon" aria-hidden="true">◆</div>
+            <h3 data-i18n="service1Title">企业策略咨询</h3>
+            <p data-i18n="service1Text">
+              分析业务需求与市场机会，制定清晰、可执行的增长计划。
+            </p>
+          </article>
+
+          <article class="service-card" style="--card-color: #f15b8a;">
+            <span class="service-number">02</span>
+            <div class="service-icon" aria-hidden="true">✦</div>
+            <h3 data-i18n="service2Title">品牌与创意设计</h3>
+            <p data-i18n="service2Text">
+              打造专业且独特的品牌形象，让您的企业更容易被看见和记住。
+            </p>
+          </article>
+
+          <article class="service-card" style="--card-color: #00a7a7;">
+            <span class="service-number">03</span>
+            <div class="service-icon" aria-hidden="true">●</div>
+            <h3 data-i18n="service3Title">数字化解决方案</h3>
+            <p data-i18n="service3Text">
+              通过网站、自动化工具和数字平台，提高业务效率与客户体验。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow" data-i18n="contactEyebrow">联系我们</span>
+
+          <h2 data-i18n="contactTitle">
+            有一个好想法？让我们一起实现
+          </h2>
+
+          <p data-i18n="contactDescription">
+            告诉我们您的目标和需求，我们将尽快与您联系。
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <aside class="contact-info">
+            <h2 data-i18n="contactInfoTitle">期待与您交流</h2>
+
+            <p data-i18n="contactInfoText">
+              欢迎通过电话、电子邮件或联系表单与我们沟通。
+            </p>
+
+            <div class="contact-list">
+              <div class="contact-item">
+                <small data-i18n="emailLabel">电子邮件</small>
+                <a href="mailto:hello@yourcompany.com">
+                  hello@yourcompany.com
+                </a>
+              </div>
+
+              <div class="contact-item">
+                <small data-i18n="phoneLabel">电话</small>
+                <a href="tel:+85212345678">+852 1234 5678</a>
+              </div>
+
+              <div class="contact-item">
+                <small data-i18n="addressLabel">地址</small>
+                <span data-i18n="addressValue">
+                  香港九龙商业中心 18 楼
+                </span>
+              </div>
+            </div>
+          </aside>
+
+          <form class="contact-form" id="contact-form">
+            <div class="field">
+              <label for="name" data-i18n="nameLabel">姓名</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="email" data-i18n="formEmailLabel">电子邮件</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+              >
+            </div>
+
+            <div class="field field-full">
+              <label for="subject" data-i18n="subjectLabel">主题</label>
+              <input id="subject" name="subject" type="text" required>
+            </div>
+
+            <div class="field field-full">
+              <label for="message" data-i18n="messageLabel">留言</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <button class="submit-button" type="submit" data-i18n="submitButton">
+              发送留言
+            </button>
+
+            <p class="form-message" id="form-message" role="status">
+              感谢您的留言，我们会尽快与您联系。
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>
+        © <span id="year"></span>
+        <span data-i18n="companyName">您的公司</span>.
+        <span data-i18n="rights">保留所有权利。</span>
+      </span>
+
+      <div class="footer-links">
+        <a href="#about" data-i18n="navAbout">关于我们</a>
+        <a href="#services" data-i18n="navServices">服务</a>
+        <a href="#contact" data-i18n="navContact">联系我们</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      zh: {
+        pageTitle: "您的公司 | 专业企业服务",
+        pageDescription: "您的公司提供专业、可靠且面向未来的企业服务。",
+        skip: "跳到主要内容",
+        companyName: "您的公司",
+        companyTagline: "专业 · 创新 · 可靠",
+        navHome: "首页",
+        navAbout: "关于我们",
+        navServices: "服务",
+        navContact: "联系我们",
+        heroBadge: "为您的业务创造持久价值",
+        heroTitle: "用专业与创新，推动您的业务<span>持续成长</span>",
+        heroDescription:
+          "我们为不同规模的企业提供灵活、可靠且高效的解决方案，从策略规划到项目落地，全程与您并肩前行。",
+        downloadCV: "下载简历 PDF",
+        viewServices: "查看服务",
+        talkToUs: "联系我们",
+        visualTitle: "让好想法真正产生影响",
+        visualText: "清晰的策略、优秀的执行，以及值得信赖的长期合作。",
+        floatingLabel: "为未来而设计",
+        experience: "多年行业经验，为客户提供务实而专业的服务",
+        aboutEyebrow: "关于我们",
+        aboutTitle: "不只是服务商，更是值得信赖的合作伙伴",
+        aboutParagraph1:
+          "我们是一支专注于企业发展、数字解决方案和品牌创新的专业团队。我们深入了解每一位客户的目标，并以清晰、有效的方法将想法转化为成果。",
+        aboutParagraph2:
+          "无论您正在建立新业务、优化现有流程，还是拓展新的市场，我们都将提供适合您实际需求的解决方案。",
+        value1Title: "专业",
+        value1Text: "注重品质",
+        value2Title: "创新",
+        value2Text: "面向未来",
+        value3Title: "可靠",
+        value3Text: "长期合作",
+        servicesEyebrow: "我们的服务",
+        servicesTitle: "从想法到成果，为企业提供完整支持",
+        servicesDescription:
+          "我们结合策略、设计与技术能力，为不同发展阶段的企业提供灵活服务。",
+        service1Title: "企业策略咨询",
+        service1Text:
+          "分析业务需求与市场机会，制定清晰、可执行的增长计划。",
+        service2Title: "品牌与创意设计",
+        service2Text:
+          "打造专业且独特的品牌形象，让您的企业更容易被看见和记住。",
+        service3Title: "数字化解决方案",
+        service3Text:
+          "通过网站、自动化工具和数字平台，提高业务效率与客户体验。",
+        contactEyebrow: "联系我们",
+        contactTitle: "有一个好想法？让我们一起实现",
+        contactDescription: "告诉我们您的目标和需求，我们将尽快与您联系。",
+        contactInfoTitle: "期待与您交流",
+        contactInfoText: "欢迎通过电话、电子邮件或联系表单与我们沟通。",
+        emailLabel: "电子邮件",
+        phoneLabel: "电话",
+        addressLabel: "地址",
+        addressValue: "香港九龙商业中心 18 楼",
+        nameLabel: "姓名",
+        formEmailLabel: "电子邮件",
+        subjectLabel: "主题",
+        messageLabel: "留言",
+        submitButton: "发送留言",
+        formSuccess: "感谢您的留言，我们会尽快与您联系。",
+        rights: "保留所有权利。",
+        menuOpen: "打开菜单",
+        menuClose: "关闭菜单"
+      },
+
+      en: {
+        pageTitle: "Your Company | Professional Business Services",
+        pageDescription:
+          "Your Company provides professional, reliable and future-ready business services.",
+        skip: "Skip to main content",
+        companyName: "Your Company",
+        companyTagline: "Professional · Innovative · Reliable",
+        navHome: "Home",
+        navAbout: "About",
+        navServices: "Services",
+        navContact: "Contact",
+        heroBadge: "Creating lasting value for your business",
+        heroTitle:
+          "Expertise and innovation for <span>sustainable growth</span>",
+        heroDescription:
+          "We provide flexible, reliable and effective solutions for companies of all sizes, supporting you from strategic planning to successful delivery.",
+        downloadCV: "Download CV (PDF)",
+        viewServices: "View services",
+        talkToUs: "Talk to us",
+        visualTitle: "Turning great ideas into real impact",
+        visualText:
+          "Clear strategy, excellent execution and partnerships you can trust.",
+        floatingLabel: "Designed for the future",
+        experience:
+          "Years of industry experience delivering practical and professional services",
+        aboutEyebrow: "About us",
+        aboutTitle: "More than a service provider — a trusted partner",
+        aboutParagraph1:
+          "We are a professional team focused on business development, digital solutions and brand innovation. We understand each client's goals and use clear, effective methods to turn ideas into measurable results.",
+        aboutParagraph2:
+          "Whether you are launching a new business, improving existing processes or entering new markets, we provide solutions shaped around your real needs.",
+        value1Title: "Professional",
+        value1Text: "Quality focused",
+        value2Title: "Innovative",
+        value2Text: "Future ready",
+        value3Title: "Reliable",
+        value3Text: "Long-term partner",
+        servicesEyebrow: "Our services",
+        servicesTitle: "Complete support from idea to outcome",
+        servicesDescription:
+          "We combine strategy, design and technology to support businesses at every stage of growth.",
+        service1Title: "Business Strategy",
+        service1Text:
+          "We assess your needs and market opportunities to create clear, actionable growth plans.",
+        service2Title: "Brand & Creative Design",
+        service2Text:
+          "We create distinctive professional identities that help your business stand out and be remembered.",
+        service3Title: "Digital Solutions",
+        service3Text:
+          "We use websites, automation and digital platforms to improve efficiency and customer experience.",
+        contactEyebrow: "Contact",
+        contactTitle: "Have a great idea? Let’s make it happen",
+        contactDescription:
+          "Tell us about your objectives and requirements, and we will get back to you soon.",
+        contactInfoTitle: "Let’s start a conversation",
+        contactInfoText:
+          "Contact us by phone, email or through the enquiry form.",
+        emailLabel: "Email",
+        phoneLabel: "Phone",
+        addressLabel: "Address",
+        addressValue: "18/F, Business Centre, Kowloon, Hong Kong",
+        nameLabel: "Name",
+        formEmailLabel: "Email",
+        subjectLabel: "Subject",
+        messageLabel: "Message",
+        submitButton: "Send message",
+        formSuccess:
+          "Thank you for your message. We will contact you shortly.",
+        rights: "All rights reserved.",
+        menuOpen: "Open menu",
+        menuClose: "Close menu"
+      }
+    };
+
+    const languageButton = document.getElementById("language-button");
+    const menuButton = document.getElementById("menu-button");
+    const contactForm = document.getElementById("contact-form");
+    const formMessage = document.getElementById("form-message");
+    const descriptionMeta = document.querySelector('meta[name="description"]');
+
+    let currentLanguage = localStorage.getItem("siteLanguage") || "zh";
+
+    function setLanguage(language) {
+      currentLanguage = language;
+      const content = translations[language];
+
+      document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+      document.title = content.pageTitle;
+      descriptionMeta.setAttribute("content", content.pageDescription);
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+
+        if (content[key]) {
+          element.innerHTML = content[key];
+        }
+      });
+
+      languageButton.textContent = language === "zh" ? "EN" : "中文";
+      languageButton.setAttribute(
+        "aria-label",
+        language === "zh" ? "Switch to English" : "切换到中文"
+      );
+
+      formMessage.textContent = content.formSuccess;
+      menuButton.setAttribute("aria-label", content.menuOpen);
+
+      localStorage.setItem("siteLanguage", language);
+    }
+
+    languageButton.addEventListener("click", () => {
+      setLanguage(currentLanguage === "zh" ? "en" : "zh");
+    });
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = document.body.classList.toggle("menu-open");
+
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen
+          ? translations[currentLanguage].menuClose
+          : translations[currentLanguage].menuOpen
+      );
+    });
+
+    document.querySelectorAll(".nav-menu a").forEach((link) => {
+      link.addEventListener("click", () => {
+        document.body.classList.remove("menu-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute(
+          "aria-label",
+          translations[currentLanguage].menuOpen
+        );
+      });
+    });
+
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      formMessage.style.display = "block";
+      contactForm.reset();
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    setLanguage(currentLanguage);
+  </script>
+</body>
+</html>
